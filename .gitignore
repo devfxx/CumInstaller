@@ -1,0 +1,4 @@
+cuminstaller
+*.exe
+*.syso
+*.old
