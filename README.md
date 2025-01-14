@@ -1,6 +1,6 @@
-# Cum Installer
+# Pwn Installer
 
-The Cum Installer allows you to install [CumCord, a fork of Vencord](https://github.com/devfxx/CumCord)
+The Pwn Installer allows you to install [PwnCord, a fork of Vencord](https://github.com/xlarp/PwnCord)
 
 ![image](https://user-images.githubusercontent.com/45497981/226734476-5fb42420-844d-4e27-ae06-4799118e086e.png)
 
@@ -69,4 +69,4 @@ go build --tags cli
 ```
 
 You might want to pass some flags to this command to get a better build.
-See [the GitHub workflow](https://github.com/devfxx/CumInstaller/blob/main/.github/workflows/release.yml) for what flags I pass or if you want more precise instructions
+See [the GitHub workflow](https://github.com/xlarp/PwnInstaller/blob/main/.github/workflows/release.yml) for what flags I pass or if you want more precise instructions
