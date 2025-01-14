@@ -1,13 +1,13 @@
 package main
 
 import (
-	"cuminstaller/buildinfo"
 	"errors"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path"
+	"pwninstaller/buildinfo"
 	"runtime"
 	"time"
 )
@@ -40,15 +40,15 @@ func init() {
 }
 
 func GetInstallerDownloadLink() string {
-	const BaseUrl = "https://github.com/devfxx/CumInstaller/releases/latest/download/"
+	const BaseUrl = "https://github.com/xlarp/PwnInstaller/releases/latest/download/"
 	switch runtime.GOOS {
 	case "windows":
-		filename := Ternary(buildinfo.UiType == buildinfo.UiTypeCli, "CumInstallerCli.exe", "CumInstaller.exe")
+		filename := Ternary(buildinfo.UiType == buildinfo.UiTypeCli, "PwnInstallerCli.exe", "PwnInstaller.exe")
 		return BaseUrl + filename
 	case "darwin":
-		return BaseUrl + "CumInstaller.MacOS.zip"
+		return BaseUrl + "PwnInstaller.MacOS.zip"
 	case "linux":
-		return BaseUrl + "CumInstallerCli-linux"
+		return BaseUrl + "PwnInstallerCli-linux"
 	default:
 		return ""
 	}
@@ -84,7 +84,7 @@ func UpdateSelf() error {
 	}
 	defer res.Body.Close()
 
-	tmp, err := os.CreateTemp(ownExeDir, "CumInstallerUpdate")
+	tmp, err := os.CreateTemp(ownExeDir, "PwnInstallerUpdate")
 	if err != nil {
 		return fmt.Errorf("Failed to create tempfile: %w", err)
 	}

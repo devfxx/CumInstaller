@@ -3,11 +3,11 @@
 package main
 
 import (
-	"cuminstaller/buildinfo"
 	"errors"
 	"flag"
 	"fmt"
 	"os"
+	"pwninstaller/buildinfo"
 	"runtime"
 	"strings"
 
@@ -42,9 +42,9 @@ func main() {
 	var helpFlag = flag.Bool("help", false, "View usage instructions")
 	var versionFlag = flag.Bool("version", false, "View the program version")
 	var updateSelfFlag = flag.Bool("update-self", false, "Update me to the latest version")
-	var installFlag = flag.Bool("install", false, "Install CumCord")
-	var updateFlag = flag.Bool("repair", false, "Repair CumCord")
-	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall CumCord")
+	var installFlag = flag.Bool("install", false, "Install PwnCord")
+	var updateFlag = flag.Bool("repair", false, "Repair PwnCord")
+	var uninstallFlag = flag.Bool("uninstall", false, "Uninstall PwnCord")
 	var installOpenAsarFlag = flag.Bool("install-openasar", false, "Install OpenAsar")
 	var uninstallOpenAsarFlag = flag.Bool("uninstall-openasar", false, "Uninstall OpenAsar")
 	var locationFlag = flag.String("location", "", "The location of the Discord install to modify")
@@ -57,7 +57,7 @@ func main() {
 	}
 
 	if *versionFlag {
-		fmt.Println("Cum Installer Cli", buildinfo.InstallerTag, "("+buildinfo.InstallerGitHash+")")
+		fmt.Println("Pwn Installer Cli", buildinfo.InstallerTag, "("+buildinfo.InstallerGitHash+")")
 		return
 	}
 
@@ -95,18 +95,18 @@ func main() {
 			<-SelfUpdateCheckDoneChan
 			if IsSelfOutdated {
 				Log.Warn("Your installer is outdated.")
-				Log.Warn("To update, select the 'Update CumCord Installer' option to update, or run with --update-self")
+				Log.Warn("To update, select the 'Update PwnCord Installer' option to update, or run with --update-self")
 			}
 		}()
 
 		choices := []string{
-			"Install CumCord",
-			"Repair CumCord",
-			"Uninstall CumCord",
+			"Install PwnCord",
+			"Repair PwnCord",
+			"Uninstall PwnCord",
 			"Install OpenAsar",
 			"Uninstall OpenAsar",
 			"View Help Menu",
-			"Update CumCord Installer",
+			"Update PwnCord Installer",
 			"Quit",
 		}
 		_, choice, err := (&promptui.Select{
@@ -121,7 +121,7 @@ func main() {
 			return
 		case "Quit":
 			return
-		case "Update CumCord Installer":
+		case "Update PwnCord Installer":
 			if err := UpdateSelf(); err != nil {
 				Log.Error("Failed to update self:", err)
 				exitFailure()
@@ -139,7 +139,7 @@ func main() {
 	} else if uninstall {
 		errSilent = PromptDiscord("unpatch", *locationFlag, *branchFlag).unpatch()
 	} else if update {
-		Log.Info("Downloading latest CumCord files...")
+		Log.Info("Downloading latest PwnCord files...")
 		err := installLatestBuilds()
 		Log.Info("Done!")
 		if err == nil {
@@ -269,5 +269,5 @@ func HandleScuffedInstall() {
 	fmt.Println("Hold On!")
 	fmt.Println("You have a broken Discord Install.")
 	fmt.Println("Please reinstall Discord before proceeding!")
-	fmt.Println("Otherwise, CumCord will likely not work.")
+	fmt.Println("Otherwise, PwnCord will likely not work.")
 }

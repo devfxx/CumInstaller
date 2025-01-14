@@ -33,18 +33,18 @@ jobs:
         run: go get -v
 
       - name: Build Cli
-        run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -tags "static cli" -ldflags "-s -w -X 'cuminstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'cuminstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o CumInstallerCli-linux
+        run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -tags "static cli" -ldflags "-s -w -X 'pwninstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'pwninstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o PwnInstallerCli-linux
 
       - name: Update executable
         run: |
-          chmod +x CumInstallerCli-linux
+          chmod +x PwnInstallerCli-linux
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: CumInstaller-linux
+          name: PwnInstaller-linux
           path: |
-            CumInstallerCli-linux
+            PwnInstallerCli-linux
 
   build-mac:
     runs-on: macos-latest
@@ -79,26 +79,26 @@ jobs:
         run: go get -v
 
       - name: Build
-        run: CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -v -tags static -ldflags "-s -w -X 'cuminstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'cuminstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o CumInstaller
+        run: CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -v -tags static -ldflags "-s -w -X 'pwninstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'pwninstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o PwnInstaller
 
       - name: Update executable
         run: |
-          chmod +x CumInstaller
+          chmod +x PwnInstaller
 
       - name: Generate MacOS bundle
         run: |
-          mkdir -p CumInstaller.app/Contents/MacOS
-          mkdir -p CumInstaller.app/Contents/Resources
-          cp macos/Info.plist CumInstaller.app/Contents/Info.plist
-          mv CumInstaller CumInstaller.app/Contents/MacOS/CumInstaller
-          cp macos/icon.icns CumInstaller.app/Contents/Resources/icon.icns
-          zip -r CumInstaller.MacOS.zip CumInstaller.app
+          mkdir -p PwnInstaller.app/Contents/MacOS
+          mkdir -p PwnInstaller.app/Contents/Resources
+          cp macos/Info.plist PwnInstaller.app/Contents/Info.plist
+          mv PwnInstaller PwnInstaller.app/Contents/MacOS/PwnInstaller
+          cp macos/icon.icns PwnInstaller.app/Contents/Resources/icon.icns
+          zip -r PwnInstaller.MacOS.zip PwnInstaller.app
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: CumInstaller-macos
-          path: CumInstaller.MacOS.zip
+          name: PwnInstaller-macos
+          path: PwnInstaller.MacOS.zip
 
   build-windows:
     runs-on: windows-latest
@@ -145,22 +145,22 @@ jobs:
           export GOROOT=/mingw64/lib/go
           export GOPATH=/mingw64
           go-winres make --product-version "git-tag"
-          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -v -tags static -ldflags "-s -w -H=windowsgui -extldflags=-static -X 'cuminstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'cuminstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o CumInstaller.exe
+          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -v -tags static -ldflags "-s -w -H=windowsgui -extldflags=-static -X 'pwninstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'pwninstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o PwnInstaller.exe
 
       - name: Build i386 Cli
         shell: msys2 {0}
         run: |
           export GOROOT=/mingw64/lib/go
           export GOPATH=/mingw64
-          CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -v -tags "static cli" -ldflags "-s -w -extldflags=-static -X 'cuminstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'cuminstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o CumInstallerCli.exe
+          CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -v -tags "static cli" -ldflags "-s -w -extldflags=-static -X 'pwninstaller/buildinfo.InstallerGitHash=$(git rev-parse --short HEAD)' -X 'pwninstaller/buildinfo.InstallerTag=${{ github.ref_name }}'" -o PwnInstallerCli.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: CumInstaller-windows
+          name: PwnInstaller-windows
           path: |
-            CumInstaller.exe
-            CumInstallerCli.exe
+            PwnInstaller.exe
+            PwnInstallerCli.exe
 
   release:
     runs-on: ubuntu-latest
@@ -172,17 +172,17 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: CumInstaller-linux
+          name: PwnInstaller-linux
           path: linux
 
       - uses: actions/download-artifact@v3
         with:
-          name: CumInstaller-macos
+          name: PwnInstaller-macos
           path: macos
 
       - uses: actions/download-artifact@v3
         with:
-          name: CumInstaller-windows
+          name: PwnInstaller-windows
           path: windows
 
       - name: Create the release
@@ -194,6 +194,6 @@ jobs:
           prerelease: false
           draft: false
           files: |
-            linux/CumInstallerCli-linux
-            macos/CumInstaller.MacOS.zip
-            windows/CumInstalle*.exe
+            linux/PwnInstallerCli-linux
+            macos/PwnInstaller.MacOS.zip
+            windows/PwnInstalle*.exe

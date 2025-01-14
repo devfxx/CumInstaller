@@ -1,14 +1,14 @@
 package main
 
 import (
-	"cuminstaller/buildinfo"
 	"image/color"
+	"pwninstaller/buildinfo"
 )
 
-const ReleaseUrl = "https://api.github.com/repos/devfxx/CumCord/releases/latest"
-const InstallerReleaseUrl = "https://api.github.com/repos/devfxx/CumInstaller/releases/latest"
+const ReleaseUrl = "https://api.github.com/repos/xlarp/PwnCord/releases/latest"
+const InstallerReleaseUrl = "https://api.github.com/repos/xlarp/PwnInstaller/releases/latest"
 
-var UserAgent = "CumInstaller/" + buildinfo.InstallerGitHash + " (https://github.com/devfxx/CumInstaller)"
+var UserAgent = "PwnInstaller/" + buildinfo.InstallerGitHash + " (https://github.com/xlarp/PwnInstaller)"
 
 var (
 	DiscordGreen  = color.RGBA{R: 0x2D, G: 0x7C, B: 0x46, A: 0xFF}

@@ -4,11 +4,11 @@ package main
 
 import (
 	"bytes"
-	"cuminstaller/buildinfo"
 	_ "embed"
 	"errors"
 	"image"
 	"image/color"
+	"pwninstaller/buildinfo"
 
 	g "github.com/AllenDang/giu"
 	"github.com/AllenDang/imgui-go"
@@ -68,7 +68,7 @@ func main() {
 		g.Update()
 	}()
 
-	win = g.NewMasterWindow("CumCord Installer", 1200, 800, 0)
+	win = g.NewMasterWindow("PwnCord Installer", 1200, 800, 0)
 
 	icon, _, err := image.Decode(bytes.NewReader(iconBytes))
 	if err != nil {
@@ -114,7 +114,7 @@ func InstallLatestBuilds() (err error) {
 
 	err = installLatestBuilds()
 	if err != nil {
-		ShowModal("Uh Oh!", "Failed to install the latest CumCord builds from GitHub:\n"+err.Error())
+		ShowModal("Uh Oh!", "Failed to install the latest PwnCord builds from GitHub:\n"+err.Error())
 	}
 	return
 }
@@ -435,7 +435,7 @@ func renderInstaller() g.Widget {
 		g.Style().SetFontSize(20).To(
 			renderErrorCard(
 				DiscordYellow,
-				"**Github** is the only official places to get CumCord. Any other site claiming to be CumCord is malicious.\n"+
+				"**Github** is the only official places to get PwnCord. Any other site claiming to be PwnCord is malicious.\n"+
 					"If you downloaded from any other source, you should delete / uninstall everything immediately, run a malware scan and change your Discord password.",
 				90,
 			),
@@ -547,7 +547,7 @@ func renderInstaller() g.Widget {
 								}
 							}).
 							Size((w-40)/4, 50),
-						Tooltip("Reinstall & Update CumCord"),
+						Tooltip("Reinstall & Update PwnCord"),
 					),
 				g.Style().
 					SetColor(g.StyleColorButton, DiscordRed).
@@ -569,16 +569,16 @@ func renderInstaller() g.Widget {
 		),
 
 		InfoModal("#patched", "Successfully Patched", "If Discord is still open, fully close it first.\n"+
-			"Then, start it and verify CumCord installed successfully by looking for its category in Discord Settings"),
+			"Then, start it and verify PwnCord installed successfully by looking for its category in Discord Settings"),
 		InfoModal("#unpatched", "Successfully Unpatched", "If Discord is still open, fully close it first. Then start it again, it should be back to stock!"),
 		InfoModal("#scuffed-install", "Hold On!", "You have a broken Discord Install.\n"+
 			"Sometimes Discord decides to install to the wrong location for some reason!\n"+
-			"You need to fix this before patching, otherwise CumCord will likely not work.\n\n"+
+			"You need to fix this before patching, otherwise PwnCord will likely not work.\n\n"+
 			"Use the below button to jump there and delete any folder called Discord or Squirrel.\n"+
 			"If the folder is now empty, feel free to go back a step and delete that folder too.\n"+
 			"Then see if Discord still starts. If not, reinstall it"),
 		RawInfoModal("#openasar-confirm", "OpenAsar", "OpenAsar is an open-source alternative of Discord desktop's app.asar.\n"+
-			"CumCord is in no way affiliated with OpenAsar.\n"+
+			"PwnCord is in no way affiliated with OpenAsar.\n"+
 			"You're installing OpenAsar at your own risk. If you run into issues with OpenAsar,\n"+
 			"no support will be provided, join the OpenAsar Server instead!\n\n"+
 			"To install OpenAsar, press Accept and click 'Install OpenAsar' again.", true),
@@ -631,7 +631,7 @@ func loop() {
 		Layout(
 			g.Align(g.AlignCenter).To(
 				g.Style().SetFontSize(40).To(
-					g.Label("CumCord Installer"),
+					g.Label("PwnCord Installer"),
 				),
 			),
 
@@ -653,14 +653,14 @@ func loop() {
 				}, nil},
 				g.Dummy(0, 10),
 				g.Label("Installer Version: "+buildinfo.InstallerTag+" ("+buildinfo.InstallerGitHash+")"+Ternary(IsSelfOutdated, " - OUTDATED", "")),
-				g.Label("Local CumCord Version: "+InstalledHash),
+				g.Label("Local PwnCord Version: "+InstalledHash),
 				&CondWidget{
 					GithubError == nil,
 					func() g.Widget {
 						if IsDevInstall {
-							return g.Label("Not updating CumCord due to being in DevMode")
+							return g.Label("Not updating PwnCord due to being in DevMode")
 						}
-						return g.Label("Latest CumCord Version: " + LatestHash)
+						return g.Label("Latest PwnCord Version: " + LatestHash)
 					}, func() g.Widget {
 						return renderErrorCard(DiscordRed, "Failed to fetch Info from GitHub: "+GithubError.Error(), 40)
 					},

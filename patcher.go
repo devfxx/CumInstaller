@@ -20,11 +20,11 @@ func init() {
 		Log.Debug("Using CUMCORD_USER_DATA_DIR")
 		BaseDir = dir
 	} else if dir = os.Getenv("DISCORD_USER_DATA_DIR"); dir != "" {
-		Log.Debug("Using DISCORD_USER_DATA_DIR/../CumCordData")
-		BaseDir = path.Join(dir, "..", "CumCordData")
+		Log.Debug("Using DISCORD_USER_DATA_DIR/../PwnCordData")
+		BaseDir = path.Join(dir, "..", "PwnCordData")
 	} else {
 		Log.Debug("Using UserConfig")
-		BaseDir = appdir.New("CumCord").UserConfig()
+		BaseDir = appdir.New("PwnCord").UserConfig()
 	}
 	FilesDir = path.Join(BaseDir, "dist")
 	if !ExistsFile(FilesDir) {
