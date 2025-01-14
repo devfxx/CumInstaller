@@ -9,7 +9,7 @@
   "RT_MANIFEST": {
     "#1": {
       "0409": {
-        "description": "An Installer for CumCord",
+        "description": "An Installer for PwnCord",
         "minimum-os": "win10",
         "execution-level": "as invoker",
         "dpi-awareness": "system"
@@ -22,9 +22,9 @@
         "info": {
           "0409": {
             "Comments": "Comments",
-            "CompanyName": "CumCord",
+            "CompanyName": "PwnCord",
             "FileDescription": "Cum Installer",
-            "LegalCopyright": "© 2024 devfxx - WTFPL",
+            "LegalCopyright": "© 2025 xlarp - WTFPL",
             "ProductName": "Cum Installer",
             "ProductVersion": ""
           }
