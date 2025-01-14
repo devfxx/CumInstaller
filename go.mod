@@ -1,4 +1,4 @@
-module cuminstaller
+module pwninstaller
 
 go 1.20
 
