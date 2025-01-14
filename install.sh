@@ -13,7 +13,7 @@ echo "Downloading Installer..."
 
 set -- "XDG_CONFIG_HOME=$XDG_CONFIG_HOME"
 
-curl -sS https://github.com/devfxx/CumInstaller/releases/latest/download/CumInstallerCli-Linux \
+curl -sS https://github.com/xlarp/PwnInstaller/releases/latest/download/PwnInstallerCli-Linux \
   --output "$outfile" \
   --location
 

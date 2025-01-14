@@ -1,6 +1,6 @@
-$link = "https://github.com/devfxx/CumInstaller/releases/latest/download/CumInstallerCli.exe"
+$link = "https://github.com/xlarp/PwnInstaller/releases/latest/download/PwnInstallerCli.exe"
 
-$outfile = "$env:TEMP\CumInstallerCli.exe"
+$outfile = "$env:TEMP\PwnInstallerCli.exe"
 
 Write-Output "Downloading installer to $outfile"
 
